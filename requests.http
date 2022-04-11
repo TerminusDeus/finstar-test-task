@@ -1,0 +1,18 @@
+### Increase user balance
+POST http://127.0.0.1:8080/user/v1/balance/increase
+Content-Type: application/json
+
+{
+  "userId": 1,
+  "receipt": 10
+}
+
+### Transfer user balance
+POST http://127.0.0.1:8080/user/v1/balance/transfer
+Content-Type: application/json
+
+{
+  "userIdTo": 1,
+  "userIdFrom": 2,
+  "writeOff": 50
+}

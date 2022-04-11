@@ -1,0 +1,109 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "service.proto",
+    "version": "version not set"
+  },
+  "schemes": [
+    "http",
+    "https"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/user/v1/balance/increase": {
+      "post": {
+        "operationId": "IncreaseBalance",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/protoIncreaseBalanceResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/protoIncreaseBalanceRequest"
+            }
+          }
+        ],
+        "tags": [
+          "UserService"
+        ]
+      }
+    },
+    "/user/v1/balance/transfer": {
+      "post": {
+        "operationId": "TransferBalance",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/protoTransferBalanceResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/protoTransferBalanceRequest"
+            }
+          }
+        ],
+        "tags": [
+          "UserService"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "protoIncreaseBalanceRequest": {
+      "type": "object",
+      "properties": {
+        "userId": {
+          "type": "string",
+          "format": "uint64"
+        },
+        "receipt": {
+          "type": "number",
+          "format": "double"
+        }
+      }
+    },
+    "protoIncreaseBalanceResponse": {
+      "type": "object"
+    },
+    "protoTransferBalanceRequest": {
+      "type": "object",
+      "properties": {
+        "userIdFrom": {
+          "type": "string",
+          "format": "uint64"
+        },
+        "userIdTo": {
+          "type": "string",
+          "format": "uint64"
+        },
+        "writeOff": {
+          "type": "number",
+          "format": "double"
+        }
+      }
+    },
+    "protoTransferBalanceResponse": {
+      "type": "object"
+    }
+  }
+}

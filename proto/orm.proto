@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package proto;
+
+import "options/gorm.proto";
+
+option go_package = "proto";
+
+message User {
+  option (gorm.opts) = {
+    ormable: true,
+    table: "users",
+  };
+
+  uint64 id = 1 [(gorm.field).tag = {type: "serial" primary_key: true not_null: true unique: true}];
+  float balance = 2 [(gorm.field).tag = {type: "decimal(10,2) check(balance>=0)" not_null: true default: "0"}];
+}

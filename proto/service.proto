@@ -1,0 +1,43 @@
+syntax = "proto3";
+
+package proto;
+
+import "google/api/annotations.proto";
+import "validate/validate.proto";
+
+option go_package = "github.com/TerminusDeus/finstar-test-task;proto";
+
+service UserService {
+  rpc IncreaseBalance (IncreaseBalanceRequest) returns (IncreaseBalanceResponse) {
+    option (google.api.http) = {
+      post: "/user/v1/balance/increase",
+      body: "*"
+    };
+  }
+
+  rpc TransferBalance (TransferBalanceRequest) returns (TransferBalanceResponse) {
+    option (google.api.http) = {
+      post: "/user/v1/balance/transfer",
+      body: "*"
+    };
+  }
+}
+
+message IncreaseBalanceRequest {
+  uint64 userId = 1 [(validate.rules).uint64.gt = 0];
+  double receipt = 2 [(validate.rules).double.gt = 0];
+}
+
+message IncreaseBalanceResponse {
+  
+}
+
+message TransferBalanceRequest {
+  uint64 userIdFrom = 1 [(validate.rules).uint64.gt = 0];
+  uint64 userIdTo = 2 [(validate.rules).uint64.gt = 0];
+  double writeOff = 3 [(validate.rules).double.gt = 0];
+}
+
+message TransferBalanceResponse {
+
+}

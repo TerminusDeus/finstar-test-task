@@ -1,0 +1,21 @@
+app:
+  name: 'finstar-test-task'
+  version: '1.0.0'
+
+http:
+  port: '8080'
+
+logger:
+  log_level: 'debug'
+  rollbar_env: 'finstar-test-task'
+
+postgres:
+  host: 'localhost'
+  name: 'finstar'
+  port: '5432'
+  user: 'finstar'
+  password: 'finstar'
+  ssl_mode: 'disable'
+  log_level: 4
+  auto_migrate: false
+  generate_seeds: false
